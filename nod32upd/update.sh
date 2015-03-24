@@ -502,9 +502,10 @@ function makeMirror() {
   local str=`cat $mainVerFile`;
     for file in $(find $saveToPath -type f -iname \*nup | grep $saveToPath'e' | sed 's/.*\///' | tr '\n' ' '); do
       if [ -z "`echo "$str" | grep $file`" ]; then
-      logmessage "File '$saveToPath$file' - ${cRed}need delete${cNone}";
-      writeLog "File '$saveToPath$file' - need delete"
-      #rm $saveToPath$file;
+      logmessage "File '$saveToPath$file' - ${cRed}is no longer needed${cNone}";
+      writeLog "File '$saveToPath$file' - is no longer needed"
+      rm $saveToPath$file;
+      logmessage "File '$saveToPath$file' - ${cRed}deleted!${cNone}";
     fi;
   done;
 ############################################################
@@ -535,8 +536,8 @@ function makeMirror() {
         writeLog "Base $version actual, stop update mirror";
         return 1;
       else
-        logmessage "${cYel}Base $version note actual${cNone}, continue work";
-        writeLog "Base $version note actual, continue work";
+        logmessage "${cYel}Base $version not actual${cNone}, continue work";
+        writeLog "Base $version not actual, continue work";
       fi;
       rm -f $diffVerFile;
     fi;
