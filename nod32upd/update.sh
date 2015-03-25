@@ -125,7 +125,7 @@ downloadFile() {
   ## -P             Path to save file (dir)
 
   ## Save wget output to vareable and..
-  wgetResult=$(torsocks wget \
+  wgetResult=$($useTorSocks wget \
     --cache=off \
     --timestamping \
     -v -d \
